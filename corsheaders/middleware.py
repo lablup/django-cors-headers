@@ -1,4 +1,5 @@
 import re
+from django.utils.deprecation import MiddlewareMixin
 
 from django import http
 try:
@@ -23,7 +24,7 @@ ACCESS_CONTROL_ALLOW_METHODS = 'Access-Control-Allow-Methods'
 ACCESS_CONTROL_MAX_AGE = 'Access-Control-Max-Age'
 
 
-class CorsPostCsrfMiddleware(object):
+class CorsPostCsrfMiddleware(MiddlewareMixin):
 
     def _https_referer_replace_reverse(self, request):
         """
@@ -45,7 +46,7 @@ class CorsPostCsrfMiddleware(object):
         return None
 
 
-class CorsMiddleware(object):
+class CorsMiddleware(MiddlewareMixin):
 
     def _https_referer_replace(self, request):
         """
